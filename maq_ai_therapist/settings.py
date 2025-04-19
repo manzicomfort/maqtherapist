@@ -28,7 +28,21 @@ SECRET_KEY = 'django-insecure-56=rww$ne(h22i^@dberq$17!*lzlae50huozd33o($io&dzuk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://maqtherapist.onrender.com/']
+ALLOWED_HOSTS = [
+    'maqaitherapist.onrender.com',  # Your Render URL
+    'localhost',  # For local testing
+    '127.0.0.1',
+    
+]
+
+# Security settings (required for Render)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+CSRF_TRUSTED_ORIGINS = ['https://maqtherapist.onrender.com']
+
+# settings.py
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
