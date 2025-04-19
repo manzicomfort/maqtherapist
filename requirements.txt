@@ -1,7 +1,6 @@
 django
 google-cloud-texttospeech
 pyttsx3
-pyaudio
 speechrecognition
 google-generativeai
 gunicorn
