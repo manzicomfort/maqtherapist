@@ -1,0 +1,22 @@
+# .gitignore (create this file in your project root)
+
+# Django
+*.sqlite3
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+.env/
+
+# IDE & OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Media and Static (if not using CDN)
+media/
+staticfiles/

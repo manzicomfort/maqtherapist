@@ -1,0 +1,70 @@
+{% extends 'chatapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div id="caption" class="caption-scrollable">Start speaking...</div>
+
+    <!-- Loading animation -->
+    <div id="loading" class="loading" style="display:none;">Thinking<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+
+    <div class="circle">
+        <img src="{% static 'chatapp/maq_circle.png' %}" alt="MAQ">
+    </div>
+    <div class="controls">
+        <button id="start-record">🎙️</button>
+        <button id="stop-record">❌</button>
+    </div>
+    <div class="disclaimer">
+        MAQ is not a professional therapist. If symptoms persist, visit a professional therapist.
+    </div>
+    <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+    <button id="toggle-theme">🌙 Toggle Theme</button>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'chatapp/main.js' %}"></script>
+<script>
+let recognition;
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        $('#caption').text(transcript);
+
+        // Show loading animation
+        $('#loading').show();
+
+        $.post("{% url 'get_response' %}", {
+            'message': transcript,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        }, function(data){
+            // Hide loading when AI responds
+            $('#loading').hide();
+            const msg = new SpeechSynthesisUtterance(data.response);
+            window.speechSynthesis.speak(msg);
+            $('#caption').text(data.response);
+        });
+    };
+}
+
+$('#start-record').click(function() {
+    recognition.start();
+    $('.circle').addClass('glow'); // Start glowing
+});
+
+$('#stop-record').click(function() {
+    recognition.stop();
+    $('.circle').removeClass('glow'); // Stop glowing
+});
+
+$('#toggle-theme').click(function() {
+    $('body').toggleClass('light-theme');
+});
+
+
+</script>
+{% endblock %}

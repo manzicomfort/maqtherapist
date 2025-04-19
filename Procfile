@@ -1,0 +1,1 @@
+web: gunicorn maq_ai_therapist.wsgi

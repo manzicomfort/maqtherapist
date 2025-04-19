@@ -1,0 +1,12 @@
+{% extends 'chatapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="login-container">
+    <h2>Signup for MAQ</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Signup</button>
+    </form>
+</div>
+{% endblock %}
