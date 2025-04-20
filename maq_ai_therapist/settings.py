@@ -31,9 +31,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'maqtherapist.onrender.com',  # Your Render URL
-    'localhost',  # For local testing
-    '127.0.0.1',
-    
 ]
 
 # Security settings (required for Render)
