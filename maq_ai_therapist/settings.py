@@ -15,6 +15,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-56=rww$ne(h22i^@dberq$17!*lzlae50huozd33o($io&dzuk
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'maqaitherapist.onrender.com',  # Your Render URL
+    'maqtherapist.onrender.com',  # Your Render URL
     'localhost',  # For local testing
     '127.0.0.1',
     
@@ -38,7 +39,9 @@ ALLOWED_HOSTS = [
 # Security settings (required for Render)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
-CSRF_TRUSTED_ORIGINS = ['https://maqtherapist.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://maqtherapist.onrender.com'
+    ]
 
 # settings.py
 SESSION_COOKIE_SECURE = True
@@ -134,7 +137,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'chatapp/static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
