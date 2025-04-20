@@ -1,16 +1,12 @@
 {% extends 'chatapp/base.html' %}
 {% load static %}
 {% block content %}
-<div class="auth-container">
-    <div class="auth-card">
-        <img src="{% static 'chatapp/images/therapy-icon.png' %}" alt="Therapy" class="auth-icon">
-        <h2>Create Your MAQ Account</h2>
-        <form method="post" class="auth-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="auth-btn">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
-    </div>
+<div class="login-container">
+    <h2>Signup for MAQ</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Signup</button>
+    </form>
 </div>
 {% endblock %}
